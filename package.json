@@ -1,0 +1,35 @@
+{
+  "name": "cap-docker-demo",
+  "version": "2.1.9",
+  "description": "Our primer sample for getting started in a nutshell.",
+  "repository": "",
+  "files": [
+    "app",
+    "srv",
+    "db"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "@sap/cds": "^9.7.0",
+    "@cap-js/sqlite": "^2.1.1"
+  },
+  "scripts": {
+    "start": "cds serve",
+    "watch": "cds watch"
+  },
+  "license": "Apache-2.0",
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "sqlite",
+        "impl": "@cap-js/sqlite",
+        "credentials": {
+          "url": ":memory:"
+        }
+      }
+    }
+  }
+}
