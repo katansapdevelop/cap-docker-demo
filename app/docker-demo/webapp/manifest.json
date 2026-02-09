@@ -1,0 +1,147 @@
+{
+  "_version": "1.81.0",
+  "sap.app": {
+    "id": "logicalstar.dockerdemo",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.20.2",
+      "toolsId": "4cb9d154-0752-4cd7-afee-7ab0b2bb1919"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/job-service/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.144.1",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.fe.templates": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "logicalstar.dockerdemo.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {},
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "MonitoredFlowsList",
+          "target": "MonitoredFlowsList"
+        },
+        {
+          "pattern": "MonitoredFlows({key}):?query:",
+          "name": "MonitoredFlowsObjectPage",
+          "target": "MonitoredFlowsObjectPage"
+        }
+      ],
+      "targets": {
+        "MonitoredFlowsList": {
+          "type": "Component",
+          "id": "MonitoredFlowsList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/MonitoredFlows",
+              "variantManagement": "Page",
+              "navigation": {
+                "MonitoredFlows": {
+                  "detail": {
+                    "route": "MonitoredFlowsObjectPage"
+                  }
+                }
+              },
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "ResponsiveTable"
+                  }
+                }
+              },
+              "initialLoad": "Enabled"
+            }
+          }
+        },
+        "MonitoredFlowsObjectPage": {
+          "type": "Component",
+          "id": "MonitoredFlowsObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/MonitoredFlows"
+            }
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  },
+  "sap.fe": {
+    "app": {
+      "enableLazyLoading": true
+    }
+  }
+}
