@@ -38,7 +38,7 @@ docker run --name cap-docker-demo -p 4004:4004 cap-docker-demo:latest
 ```
 
 
-Push to Docker Hub
+Push to Docker Hub.  Need to login via docker login
 ```shell
 docker tag cap-docker-demo:latest katan/cap-docker-demo:latest
 docker push katan/cap-docker-demo:latest
