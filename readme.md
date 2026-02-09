@@ -40,8 +40,14 @@ docker run --name cap-docker-demo -p 4004:4004 cap-docker-demo:latest
 
 Push to Docker Hub
 ```shell
+docker tag cap-docker-demo:latest katan/cap-docker-demo:latest
 docker push katan/cap-docker-demo:latest
 ```
 
 
+## Deploing app to CF on BTP
 
+From the root dir run...
+```shell
+cf deploy ./
+```
