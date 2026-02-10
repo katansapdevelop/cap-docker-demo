@@ -23,8 +23,7 @@
   },
   "scripts": {
     "start": "cds serve",
-    "watch": "cds watch",
-    "watch-docker-demo": "cds watch --open logicalstar.dockerdemo/index.html?sap-ui-xx-viewCache=false --livereload false"
+    "watch": "cds watch"
   },
   "license": "Apache-2.0",
   "cds": {
@@ -38,7 +37,10 @@
       },
       "IntegrationContent": {
         "kind": "odata-v2",
-        "model": "srv/external/IntegrationContent"
+        "model": "srv/external/IntegrationContent",
+        "credentials": {
+          "destination": "IS_APIS"
+        }
       }
     }
   },
