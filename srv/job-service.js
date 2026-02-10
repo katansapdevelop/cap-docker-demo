@@ -11,6 +11,7 @@ module.exports = cds.service.impl(async function() {
         'Packages',
         'IntegrationPackages', 
         'IntegrationDesigntimeArtifacts',
+        'IntegrationRuntimeArtifacts',
         'ScriptCollectionDesigntimeArtifacts',
         'MessageMappingDesigntimeArtifacts',
         'ValueMappingDesigntimeArtifacts'
@@ -26,7 +27,9 @@ module.exports = cds.service.impl(async function() {
                 newQuery.limit(req.query.SELECT.limit.rows, req.query.SELECT.limit.offset || 0);
             }
             
-            return await integrationService.run(newQuery);
+            // Had to use this style as the OData Service in IS does not implement functions like $select, $filter, etc. and the cds client does not allow to ignore unsupported query options
+            return await integrationService.send('GET',req.context.http.req.url); 
+            
             
         } catch (error) {
             console.error('Error reading from Integration Suite:', error);
@@ -34,26 +37,6 @@ module.exports = cds.service.impl(async function() {
         }
     });
 
-    // Optional: Add custom logic for specific entities if needed
-    this.on('READ', 'Packages', async (req) => {
-        try {
-            console.log('Fetching Integration Packages...');
-            
-            // Create a new query that selects all entities and only supports $top and $skip
-            const newQuery = SELECT.from(req.target);
-            
-            // Only add $top and $skip if they exist in the original query
-            if (req.query.SELECT && req.query.SELECT.limit) {
-                newQuery.limit(req.query.SELECT.limit.rows, req.query.SELECT.limit.offset || 0);
-            }
-            
-            const result = await integrationService.run(newQuery);
-            return result;
-            
-        } catch (error) {
-            console.error('Error fetching packages:', error);
-            req.error(500, `Failed to fetch packages: ${error.message}`);
-        }
-    });
+  
     
 });

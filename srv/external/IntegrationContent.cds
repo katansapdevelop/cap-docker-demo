@@ -63,6 +63,7 @@ service IntegrationContent {
 
   @cds.external : true
   @cds.persistence.skip : true
+  @Capabilities.SelectSupport.Supported : false
   entity IntegrationPackages {
     key Id : String not null;
     Name : String not null;
