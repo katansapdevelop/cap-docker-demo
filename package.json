@@ -39,7 +39,10 @@
         "kind": "odata-v2",
         "model": "srv/external/IntegrationContent",
         "credentials": {
-          "destination": "IS_APIS"
+          "destination": "IS_APIS",
+          "isTrustingAllCertificates": true,
+          "useClientCredentials": true,
+          "forwardAuthToken": true
         }
       }
     }

@@ -5,23 +5,40 @@
     "version": "0.2.0",
     "configurations": [
         {
-        "name": "cds watch",
-        "request": "launch",
-        "type": "node",
-        "cwd": "${workspaceFolder}",
-        "envFile": "${workspaceFolder}/.env",
-        "runtimeExecutable": "cds",
-        "args": [
-            "watch",
-            "--with-mocks",
-            "--in-memory?"
-        ],
-        "env": {
-            "testkatan": "ams,ams-dev"
+            "name": "watch",
+            "request": "launch",
+            "type": "node",
+            "cwd": "${workspaceFolder}",
+            "envFile": "${workspaceFolder}/.env",
+            "runtimeExecutable": "cds",
+            "args": [
+                "watch",
+                "--with-mocks",
+                "--in-memory?"
+            ],
+            "env": {
+                "testkatan": "ams,ams-dev"
+            },
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
         },
-        "skipFiles": [
-            "<node_internals>/**"
-        ]
+        {
+            "name": "watch hybrid",
+            "request": "launch",
+            "type": "node",
+            "cwd": "${workspaceFolder}",
+            "envFile": "${workspaceFolder}/.env",
+            "runtimeExecutable": "cds",
+            "args": [
+                "watch"
+            ],
+            "env": {
+                "CDS_ENV": "hybrid"
+            },
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
         }
     ]
 }

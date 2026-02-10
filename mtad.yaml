@@ -17,3 +17,22 @@ modules:
       - route: ${app-name}.${domain}
     properties:  # How environment variables are defined
       MY_ENV_VAR: "value-of-my-env-var"
+    requires:
+    - name: cap-docker-demo-destinations
+
+resources:
+- name: cap-docker-demo-destinations
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: destination
+    service-plan: lite
+    config:
+      init_data:
+        instance:
+          destinations:
+          - Authentication: OAuth2ClientCredentials
+            Name: IS_APIS
+            ProxyType: Internet
+            Description: Destination to access IS APIs
+            Type: HTTP
+            URL: https://5ebed044trial.it-cpitrial06.cfapps.us10-001.hana.ondemand.com
