@@ -18,8 +18,15 @@ module.exports = cds.service.impl(async function() {
         try {
             console.log(`Reading ${req.target.name} from Integration Suite...`);
             
-            // Forward the request to the external service
-            return await integrationService.run(req.query);
+            // Create a new query that selects all entities and only supports $top and $skip
+            const newQuery = SELECT.from(req.target);
+            
+            // Only add $top and $skip if they exist in the original query
+            if (req.query.SELECT && req.query.SELECT.limit) {
+                newQuery.limit(req.query.SELECT.limit.rows, req.query.SELECT.limit.offset || 0);
+            }
+            
+            return await integrationService.run(newQuery);
             
         } catch (error) {
             console.error('Error reading from Integration Suite:', error);
@@ -32,10 +39,15 @@ module.exports = cds.service.impl(async function() {
         try {
             console.log('Fetching Integration Packages...');
             
-            // You can add custom filtering, transformation, or caching here
-            const result = await integrationService.run(req.query);
+            // Create a new query that selects all entities and only supports $top and $skip
+            const newQuery = SELECT.from(req.target);
             
-            // Example: Add custom logic or data transformation
+            // Only add $top and $skip if they exist in the original query
+            if (req.query.SELECT && req.query.SELECT.limit) {
+                newQuery.limit(req.query.SELECT.limit.rows, req.query.SELECT.limit.offset || 0);
+            }
+            
+            const result = await integrationService.run(newQuery);
             return result;
             
         } catch (error) {

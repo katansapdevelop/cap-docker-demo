@@ -34,7 +34,8 @@
                 "watch"
             ],
             "env": {
-                "CDS_ENV": "hybrid"
+                "CDS_ENV": "hybrid",
+                "PORT": "4004"
             },
             "skipFiles": [
                 "<node_internals>/**"

@@ -35,4 +35,4 @@ resources:
             ProxyType: Internet
             Description: Destination to access IS APIs
             Type: HTTP
-            URL: https://5ebed044trial.it-cpitrial06.cfapps.us10-001.hana.ondemand.com
+            URL: https://5ebed044trial.it-cpitrial06.cfapps.us10-001.hana.ondemand.com/api/v1
