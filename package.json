@@ -41,6 +41,24 @@
         "credentials": {
           "destination": "IS_APIS"
         }
+      },
+      "auth": {
+        "kind": "mocked",
+        "users": {
+          "alice@test.com": {
+            "password ": "alice",
+            "roles": [
+              "monitor",
+              "configure"
+            ]
+          },
+          "bob@test.com": {
+            "password ": "bob",
+            "roles": [
+              "monitor"
+            ]
+          }
+        }
       }
     }
   },

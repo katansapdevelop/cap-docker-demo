@@ -1,0 +1,40 @@
+{
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.monitor",
+      "description": "Monitor Integration Content"
+    },
+    {
+      "name": "$XSAPPNAME.configure",
+      "description": "Configure Application Content"
+    }
+  ],
+  "attributes": [],
+  "role-templates": [
+    {
+      "name": "admin",
+      "description": "Application Administrator",
+      "scope-references": [
+        "$XSAPPNAME.monitor",
+        "$XSAPPNAME.configure"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "user",
+      "description": "Application User",
+      "scope-references": [
+        "$XSAPPNAME.monitor"
+      ],
+      "attribute-references": []
+    }
+  ],
+  "oauth2-configuration": {
+    "redirect-uris": [
+      "https://*.hana.ondemand.com/**",
+      "https://*.applicationstudio.cloud.sap/**",
+      "http://localhost:4004/**",
+      "http://localhost:5001/**"
+    ]
+  }
+}

@@ -19,6 +19,7 @@ modules:
       MY_ENV_VAR: "value-of-my-env-var"
     requires:
     - name: cap-docker-demo-destinations
+    - name: cap-docker-demo-auth
 
 resources:
 - name: cap-docker-demo-destinations
@@ -36,3 +37,13 @@ resources:
             Description: Destination to access IS APIs
             Type: HTTP
             URL: https://5ebed044trial.it-cpitrial06.cfapps.us10-001.hana.ondemand.com/api/v1
+
+- name: cap-docker-demo-auth
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      tenant-mode: dedicated
+      xsappname: cap-docker-demo-auth
+    path: ./xs-security.json
+    service: xsuaa
+    service-plan: application
