@@ -103,6 +103,17 @@ docker tag cap-docker-demo:latest katan/cap-docker-demo:latest
 docker push katan/cap-docker-demo:latest
 ```
 
+You may need to login to docker hub to push your container
+```shell
+docker login
+```
+
+To sign in with credentials on the command line, use 
+
+```shell
+docker login -u <username>
+```
+
 
 ## ☁️ Cloud Foundry Deployment on SAP BTP
 
@@ -119,12 +130,7 @@ docker push katan/cap-docker-demo:latest
    cf login -a <api-endpoint>
    ```
 
-2. **Build the MTA archive** (if needed)
-   ```bash
-   mbt build
-   ```
-
-3. **Deploy to Cloud Foundry**
+2. **Deploy to Cloud Foundry**
    ```bash
    cf deploy ./
    ```
