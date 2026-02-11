@@ -19,11 +19,15 @@
     "@cap-js/sqlite": "^2.1.1",
     "@sap-cloud-sdk/connectivity": "^4",
     "@sap-cloud-sdk/http-client": "^4",
-    "@sap-cloud-sdk/resilience": "^4"
+    "@sap-cloud-sdk/resilience": "^4",
+    "@sap/xssec": "^4"
   },
   "scripts": {
     "start": "cds serve",
-    "watch": "cds watch"
+    "watch": "cds watch",
+    "build:prod": "docker build --target production -t cap-docker-demo:latest . && docker tag cap-docker-demo:latest katan/cap-docker-demo:latest && docker push katan/cap-docker-demo:latest",
+    "build:dev": "docker build --target development -t cap-docker-demo:latest . && docker tag cap-docker-demo:latest katan/cap-docker-demo-dev:latest && docker push katan/cap-docker-demo-dev:latest",
+    "deploy":"cf deploy ./"
   },
   "license": "Apache-2.0",
   "cds": {
@@ -46,18 +50,27 @@
         "kind": "mocked",
         "users": {
           "alice@test.com": {
-            "password ": "alice",
+            "password": "alice",
             "roles": [
+              "monitor",
+              "configure"
+            ],
+            "scopes": [
               "monitor",
               "configure"
             ]
           },
           "bob@test.com": {
-            "password ": "bob",
+            "password": "bob",
             "roles": [
               "monitor"
             ]
           }
+        }
+      },
+      "[production]": {
+        "auth": {
+          "kind": "xsuaa"
         }
       }
     }

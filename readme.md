@@ -85,27 +85,41 @@ Learn more at https://cap.cloud.sap.
 
 ## Docker Image
 
-Build the container
+### Development Build
+
+Build for local development with hot-reload and mocks:
 ```shell
-docker build -t cap-docker-demo:latest .
+docker build --target development -t cap-docker-demo:dev .
 ```
 
+Run locally:
+```shell
+docker run --name cap-docker-demo-dev -p 4004:4004 cap-docker-demo:dev
+```
 
-Run Locally
+### Production Build
+
+Build for production deployment:
+```shell
+docker build --target production -t cap-docker-demo:latest .
+```
+
+Run locally:
 ```shell
 docker run --name cap-docker-demo -p 4004:4004 cap-docker-demo:latest
 ```
 
+### Push to Docker Hub
 
-Push to Docker Hub.  Need to login via docker login
+Login to Docker Hub:
+```shell
+docker login
+```
+
+Tag and push the production image:
 ```shell
 docker tag cap-docker-demo:latest katan/cap-docker-demo:latest
 docker push katan/cap-docker-demo:latest
-```
-
-You may need to login to docker hub to push your container
-```shell
-docker login
 ```
 
 To sign in with credentials on the command line, use 
@@ -163,7 +177,7 @@ For testing OAuth2 destinations locally while connected to BTP services:
 
 3. **Run in hybrid mode**
    ```bash
-   cds serve all --with-mocks --in-memory? --profile hybrid
+   cds watch --profile hybrid
    ```
 
 ### VS Code Debug Configuration
