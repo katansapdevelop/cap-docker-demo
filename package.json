@@ -16,12 +16,14 @@
   },
   "dependencies": {
     "@sap/cds": "^9.7.0",
-    "@cap-js/sqlite": "^2.1.1"
+    "@cap-js/sqlite": "^2.1.1",
+    "@sap-cloud-sdk/connectivity": "^4",
+    "@sap-cloud-sdk/http-client": "^4",
+    "@sap-cloud-sdk/resilience": "^4"
   },
   "scripts": {
     "start": "cds serve",
-    "watch": "cds watch",
-    "watch-docker-demo": "cds watch --open logicalstar.dockerdemo/index.html?sap-ui-xx-viewCache=false --livereload false"
+    "watch": "cds watch"
   },
   "license": "Apache-2.0",
   "cds": {
@@ -31,6 +33,13 @@
         "impl": "@cap-js/sqlite",
         "credentials": {
           "url": ":memory:"
+        }
+      },
+      "IntegrationContent": {
+        "kind": "odata-v2",
+        "model": "srv/external/IntegrationContent",
+        "credentials": {
+          "destination": "IS_APIS"
         }
       }
     }
