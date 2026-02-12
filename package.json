@@ -27,7 +27,8 @@
     "watch": "cds watch",
     "build:prod": "docker build --target production -t cap-docker-demo:latest . && docker tag cap-docker-demo:latest katan/cap-docker-demo:latest && docker push katan/cap-docker-demo:latest",
     "build:dev": "docker build --target development -t cap-docker-demo:latest . && docker tag cap-docker-demo:latest katan/cap-docker-demo-dev:latest && docker push katan/cap-docker-demo-dev:latest",
-    "deploy":"cf deploy ./"
+    "deploy":"cf deploy ./",
+    "update:xssecurity": "cds compile srv --to xsuaa > xs-security.json"
   },
   "license": "Apache-2.0",
   "cds": {
